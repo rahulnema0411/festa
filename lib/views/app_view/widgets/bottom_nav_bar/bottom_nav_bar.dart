@@ -18,7 +18,6 @@ class _BottomNavBarState extends State<BottomNavBar> {
   @override
   Widget build(BuildContext context) {
     final AppBloc appBloc = context.read<AppBloc>();
-
     return Container(
       height: 80.0,
       color: Colors.white,
