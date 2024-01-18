@@ -16,7 +16,7 @@ class BottomNavBarItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return IconButton(
-      padding: EdgeInsets.fromLTRB(0.0, 16.0, 0.0, 0.0),
+      padding: const EdgeInsets.fromLTRB(0.0, 16.0, 0.0, 0.0),
       onPressed: () {
         onTap();
       },

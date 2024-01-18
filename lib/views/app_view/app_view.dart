@@ -30,14 +30,39 @@ class AppViewState extends State<AppView> {
         body: _pages[_currentIndex],
         bottomNavigationBar: BottomNavBar(
           currentIndex: _currentIndex,
-          onTap: () {
-            print('hey');
-          },
-          items: const [
-            NavBarItem(icon: Icons.home),
-            NavBarItem(icon: Icons.people),
-            NavBarItem(icon: Icons.airplane_ticket),
-            NavBarItem(icon: Icons.contact_mail)
+          items: [
+            NavBarItem(
+              icon: Icons.home,
+              onTap: () {
+                setState(() {
+                  _currentIndex = 0;
+                });
+              },
+            ),
+            NavBarItem(
+              icon: Icons.people,
+              onTap: () {
+                setState(() {
+                  _currentIndex = 1;
+                });
+              },
+            ),
+            NavBarItem(
+              icon: Icons.airplane_ticket,
+              onTap: () {
+                setState(() {
+                  _currentIndex = 2;
+                });
+              },
+            ),
+            NavBarItem(
+              icon: Icons.contact_mail,
+              onTap: () {
+                setState(() {
+                  _currentIndex = 3;
+                });
+              },
+            )
           ],
         ),
       ),

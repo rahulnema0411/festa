@@ -5,14 +5,10 @@ import 'package:flutter/material.dart';
 
 class BottomNavBar extends StatefulWidget {
   final List<NavBarItem> items;
-  final Function onTap;
   final int currentIndex;
 
   const BottomNavBar(
-      {super.key,
-      required this.items,
-      required this.onTap,
-      required this.currentIndex});
+      {super.key, required this.items, required this.currentIndex});
 
   @override
   State<BottomNavBar> createState() => _BottomNavBarState();
@@ -49,7 +45,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
               activeIcon: widget.items[0].getActiveStateIcon(),
               isSelected: currentIndex == 0,
               onTap: () {
-                widget.onTap();
+                widget.items[0].onTap();
                 setState(() {
                   currentIndex = 0;
                 });
@@ -60,7 +56,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
               activeIcon: widget.items[1].getActiveStateIcon(),
               isSelected: currentIndex == 1,
               onTap: () {
-                widget.onTap();
+                widget.items[1].onTap();
                 setState(() {
                   currentIndex = 1;
                 });
@@ -71,7 +67,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
               activeIcon: widget.items[2].getActiveStateIcon(),
               isSelected: currentIndex == 2,
               onTap: () {
-                widget.onTap();
+                widget.items[2].onTap();
                 setState(() {
                   currentIndex = 2;
                 });
@@ -82,7 +78,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
               activeIcon: widget.items[3].getActiveStateIcon(),
               isSelected: currentIndex == 3,
               onTap: () {
-                widget.onTap();
+                widget.items[3].onTap();
                 setState(() {
                   currentIndex = 3;
                 });
