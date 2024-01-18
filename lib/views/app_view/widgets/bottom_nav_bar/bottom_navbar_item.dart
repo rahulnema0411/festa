@@ -1,17 +1,16 @@
+import 'package:festa/views/app_view/widgets/bottom_nav_bar/nav_bar_item.dart';
 import 'package:flutter/material.dart';
 
 class BottomNavBarItem extends StatelessWidget {
-  final Widget icon;
-  final Widget activeIcon;
+  final NavBarItem navBarItem;
   final bool isSelected;
   final Function onTap;
 
   const BottomNavBarItem(
       {super.key,
-      required this.icon,
-      required this.activeIcon,
       required this.isSelected,
-      required this.onTap});
+      required this.onTap,
+      required this.navBarItem});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +19,7 @@ class BottomNavBarItem extends StatelessWidget {
       onPressed: () {
         onTap();
       },
-      icon: isSelected ? activeIcon : icon,
+      icon: isSelected ? navBarItem.getActiveStateIcon() : navBarItem.getIcon(),
     );
   }
 }

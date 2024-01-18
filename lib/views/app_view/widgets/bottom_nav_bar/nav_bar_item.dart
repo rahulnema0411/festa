@@ -3,11 +3,9 @@ import 'package:flutter/material.dart';
 
 class NavBarItem {
   final IconData icon;
-  final Function onTap;
 
   const NavBarItem({
     required this.icon,
-    required this.onTap,
   });
 
   Widget getActiveStateIcon() {

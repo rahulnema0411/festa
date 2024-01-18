@@ -1,30 +1,24 @@
 import 'package:festa/constants/color_constants.dart';
+import 'package:festa/views/app_view/bloc/app_bloc.dart';
+import 'package:festa/views/app_view/bloc/app_event.dart';
+import 'package:festa/views/app_view/bloc/app_state.dart';
 import 'package:festa/views/app_view/widgets/bottom_nav_bar/bottom_navbar_item.dart';
 import 'package:festa/views/app_view/widgets/bottom_nav_bar/nav_bar_item.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class BottomNavBar extends StatefulWidget {
-  final List<NavBarItem> items;
-  final int currentIndex;
-
-  const BottomNavBar(
-      {super.key, required this.items, required this.currentIndex});
+  const BottomNavBar({super.key});
 
   @override
   State<BottomNavBar> createState() => _BottomNavBarState();
 }
 
 class _BottomNavBarState extends State<BottomNavBar> {
-  late int currentIndex;
-
-  @override
-  void initState() {
-    super.initState();
-    currentIndex = widget.currentIndex;
-  }
-
   @override
   Widget build(BuildContext context) {
+    final AppBloc appBloc = context.read<AppBloc>();
+
     return Container(
       height: 80.0,
       color: Colors.white,
@@ -41,47 +35,35 @@ class _BottomNavBarState extends State<BottomNavBar> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             BottomNavBarItem(
-              icon: widget.items[0].getIcon(),
-              activeIcon: widget.items[0].getActiveStateIcon(),
-              isSelected: currentIndex == 0,
+              navBarItem: const NavBarItem(icon: Icons.home),
+              isSelected: appBloc.state is HomeState,
               onTap: () {
-                widget.items[0].onTap();
-                setState(() {
-                  currentIndex = 0;
-                });
+                appBloc.add(LoadHomeEvent());
+                setState(() {});
               },
             ),
             BottomNavBarItem(
-              icon: widget.items[1].getIcon(),
-              activeIcon: widget.items[1].getActiveStateIcon(),
-              isSelected: currentIndex == 1,
+              navBarItem: const NavBarItem(icon: Icons.people),
+              isSelected: appBloc.state is PeopleState,
               onTap: () {
-                widget.items[1].onTap();
-                setState(() {
-                  currentIndex = 1;
-                });
+                appBloc.add(LoadPeopleEvent());
+                setState(() {});
               },
             ),
             BottomNavBarItem(
-              icon: widget.items[2].getIcon(),
-              activeIcon: widget.items[2].getActiveStateIcon(),
-              isSelected: currentIndex == 2,
+              navBarItem: const NavBarItem(icon: Icons.airplane_ticket_rounded),
+              isSelected: appBloc.state is TicketState,
               onTap: () {
-                widget.items[2].onTap();
-                setState(() {
-                  currentIndex = 2;
-                });
+                appBloc.add(LoadTicketEvent());
+                setState(() {});
               },
             ),
             BottomNavBarItem(
-              icon: widget.items[3].getIcon(),
-              activeIcon: widget.items[3].getActiveStateIcon(),
-              isSelected: currentIndex == 3,
+              navBarItem: const NavBarItem(icon: Icons.account_box),
+              isSelected: appBloc.state is ProfileState,
               onTap: () {
-                widget.items[3].onTap();
-                setState(() {
-                  currentIndex = 3;
-                });
+                appBloc.add(LoadProfileEvent());
+                setState(() {});
               },
             ),
           ],
