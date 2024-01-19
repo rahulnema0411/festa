@@ -1,3 +1,4 @@
+import 'package:festa/views/ticket_view/widgets/ticket_stack.dart';
 import 'package:flutter/material.dart';
 
 class HistoryEventsView extends StatelessWidget {
@@ -5,8 +6,13 @@ class HistoryEventsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Text('HistoryEventsView'),
+    return const SingleChildScrollView(
+      child: Column(
+        children: [
+          TicketStack(ticketCount: 3),
+          TicketStack(ticketCount: 2),
+        ],
+      ),
     );
   }
 }

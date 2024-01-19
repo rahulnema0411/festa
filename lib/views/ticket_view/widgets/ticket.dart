@@ -10,7 +10,7 @@ class Ticket extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 26.0),
       child: ClipPath(
-        clipper: BigTicketClipper(),
+        clipper: TicketClipper(),
         child: Container(
           width: double.infinity,
           height: 460,
@@ -192,7 +192,7 @@ class Ticket extends StatelessWidget {
   }
 }
 
-class BigTicketClipper extends CustomClipper<Path> {
+class TicketClipper extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {
     final path = Path();
