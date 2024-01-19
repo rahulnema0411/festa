@@ -32,6 +32,12 @@ class StyleConstants {
     fontSize: 14.0,
   );
 
+  static TextStyle readTextWhiteSmall = const TextStyle(
+    color: Colors.white,
+    fontWeight: FontWeight.w600,
+    fontSize: 12.0,
+  );
+
   static TextStyle readTextSmall = const TextStyle(
     color: Color.fromARGB(127, 255, 255, 255),
     fontWeight: FontWeight.w600,

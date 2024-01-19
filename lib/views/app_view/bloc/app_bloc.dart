@@ -3,7 +3,7 @@ import 'package:festa/views/app_view/bloc/app_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AppBloc extends Bloc<AppEvent, AppState> {
-  AppBloc() : super(TicketState()) {
+  AppBloc() : super(HomeState()) {
     void onLoadHomeEvent(LoadHomeEvent event, Emitter<AppState> emit) {
       emit(HomeState());
     }
