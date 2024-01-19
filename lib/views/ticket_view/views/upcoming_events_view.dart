@@ -1,3 +1,4 @@
+import 'package:festa/views/ticket_view/widgets/ticket.dart';
 import 'package:flutter/material.dart';
 
 class UpcomingEventsView extends StatelessWidget {
@@ -6,7 +7,7 @@ class UpcomingEventsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Center(
-      child: Text('UpcomingEventsView'),
+      child: Ticket(),
     );
   }
 }
