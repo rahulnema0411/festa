@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:festa/constants/color_constants.dart';
 import 'package:festa/views/app_view/bloc/app_bloc.dart';
 import 'package:festa/views/app_view/bloc/app_event.dart';
@@ -18,54 +20,60 @@ class _BottomNavBarState extends State<BottomNavBar> {
   @override
   Widget build(BuildContext context) {
     final AppBloc appBloc = context.read<AppBloc>();
-    return Container(
+    return SizedBox(
       height: 80.0,
-      color: Colors.white,
-      child: Container(
-        margin: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 26.0),
-        padding: const EdgeInsets.symmetric(horizontal: 10.0),
-        decoration: BoxDecoration(
-          color: ColorConstants.primaryGrey,
-          borderRadius: const BorderRadius.all(
-            Radius.circular(20.0),
+      child: ClipRRect(
+        child: BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 20.0, sigmaY: 20.0),
+          child: Container(
+            margin:
+                const EdgeInsets.symmetric(vertical: 12.0, horizontal: 26.0),
+            padding: const EdgeInsets.symmetric(horizontal: 10.0),
+            decoration: BoxDecoration(
+              color: ColorConstants.primaryGrey,
+              borderRadius: const BorderRadius.all(
+                Radius.circular(20.0),
+              ),
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                BottomNavBarItem(
+                  navBarItem: const NavBarItem(icon: Icons.home),
+                  isSelected: appBloc.state is HomeState,
+                  onTap: () {
+                    appBloc.add(LoadHomeEvent());
+                    setState(() {});
+                  },
+                ),
+                BottomNavBarItem(
+                  navBarItem: const NavBarItem(icon: Icons.people),
+                  isSelected: appBloc.state is PeopleState,
+                  onTap: () {
+                    appBloc.add(LoadPeopleEvent());
+                    setState(() {});
+                  },
+                ),
+                BottomNavBarItem(
+                  navBarItem:
+                      const NavBarItem(icon: Icons.airplane_ticket_rounded),
+                  isSelected: appBloc.state is TicketState,
+                  onTap: () {
+                    appBloc.add(LoadTicketEvent());
+                    setState(() {});
+                  },
+                ),
+                BottomNavBarItem(
+                  navBarItem: const NavBarItem(icon: Icons.account_box),
+                  isSelected: appBloc.state is ProfileState,
+                  onTap: () {
+                    appBloc.add(LoadProfileEvent());
+                    setState(() {});
+                  },
+                ),
+              ],
+            ),
           ),
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            BottomNavBarItem(
-              navBarItem: const NavBarItem(icon: Icons.home),
-              isSelected: appBloc.state is HomeState,
-              onTap: () {
-                appBloc.add(LoadHomeEvent());
-                setState(() {});
-              },
-            ),
-            BottomNavBarItem(
-              navBarItem: const NavBarItem(icon: Icons.people),
-              isSelected: appBloc.state is PeopleState,
-              onTap: () {
-                appBloc.add(LoadPeopleEvent());
-                setState(() {});
-              },
-            ),
-            BottomNavBarItem(
-              navBarItem: const NavBarItem(icon: Icons.airplane_ticket_rounded),
-              isSelected: appBloc.state is TicketState,
-              onTap: () {
-                appBloc.add(LoadTicketEvent());
-                setState(() {});
-              },
-            ),
-            BottomNavBarItem(
-              navBarItem: const NavBarItem(icon: Icons.account_box),
-              isSelected: appBloc.state is ProfileState,
-              onTap: () {
-                appBloc.add(LoadProfileEvent());
-                setState(() {});
-              },
-            ),
-          ],
         ),
       ),
     );
