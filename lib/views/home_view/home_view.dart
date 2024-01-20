@@ -1,6 +1,7 @@
 import 'package:festa/constants/color_constants.dart';
 import 'package:festa/constants/style_constants.dart';
 import 'package:festa/views/home_view/widgets/experience_tile.dart';
+import 'package:festa/views/home_view/widgets/select_location_popup.dart';
 import 'package:flutter/material.dart';
 
 class HomeView extends StatelessWidget {
@@ -13,7 +14,9 @@ class HomeView extends StatelessWidget {
         backgroundColor: Colors.transparent,
         elevation: 0.0,
         leading: IconButton(
-          onPressed: () {},
+          onPressed: () {
+            _showPopup(context);
+          },
           icon: Icon(
             Icons.pin_drop_rounded,
             color: ColorConstants.secondaryRed,
@@ -78,6 +81,15 @@ class HomeView extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+
+  void _showPopup(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return const SelectLocationPopup();
+      },
     );
   }
 }

@@ -11,6 +11,7 @@ class HistoryEventsView extends StatelessWidget {
         children: [
           TicketStack(ticketCount: 3),
           TicketStack(ticketCount: 2),
+          TicketStack(ticketCount: 4),
         ],
       ),
     );

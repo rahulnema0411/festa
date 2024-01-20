@@ -26,7 +26,7 @@ class _TicketViewState extends State<TicketView> {
       length: 2,
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.transparent,
+          backgroundColor: Colors.black,
           elevation: 0.0,
           title: Text(
             'Your Tickets',
