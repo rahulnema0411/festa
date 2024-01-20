@@ -34,11 +34,14 @@ class ExperienceTile extends StatelessWidget {
               ),
             ),
           ),
-          Container(
-            color: Colors.amber,
+          Positioned(
+            bottom: 8.0,
+            left: 0.0,
+            right: 0.0,
             child: Text(
               title,
               style: StyleConstants.readTextWhiteSmall,
+              textAlign: TextAlign.center,
             ),
           ),
         ],
