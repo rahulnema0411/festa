@@ -1,11 +1,43 @@
+import 'dart:convert';
+
 import 'package:festa/constants/color_constants.dart';
-import 'package:festa/views/home_view/widgets/location_tile.dart';
+import 'package:festa/constants/string_constants.dart';
+import 'package:festa/helper/api_helper.dart';
+import 'package:festa/views/home_view/models/autcomplete_prediction.dart';
+import 'package:festa/views/home_view/widgets/choose_suggestions.dart';
+import 'package:festa/views/home_view/widgets/suggestions.dart';
 import 'package:flutter/material.dart';
 
-class SelectLocationPopup extends StatelessWidget {
+class SelectLocationPopup extends StatefulWidget {
   const SelectLocationPopup({
     super.key,
   });
+
+  @override
+  State<SelectLocationPopup> createState() => _SelectLocationPopupState();
+}
+
+class _SelectLocationPopupState extends State<SelectLocationPopup> {
+  List<Place> places = [];
+
+  void placeAutocomplete(String query) async {
+    Uri uri =
+        Uri.https('maps.googleapis.com', 'maps/api/place/autocomplete/json', {
+      "input": query,
+      "key": apiKey,
+    });
+
+    String? response = await APIHelper.fetchUrl(uri);
+
+    if (response != null) {
+      PlaceSuggestions suggestions =
+          PlaceSuggestions.fromJson(jsonDecode(response));
+
+      setState(() {
+        places = suggestions.places;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,6 +66,9 @@ class SelectLocationPopup extends StatelessWidget {
               ],
             ),
             TextField(
+              onChanged: (value) {
+                placeAutocomplete(value);
+              },
               decoration: InputDecoration(
                 filled: true,
                 fillColor: Colors.black,
@@ -44,30 +79,11 @@ class SelectLocationPopup extends StatelessWidget {
                 ),
               ),
             ),
-            const Row(
-              children: [
-                Icon(Icons.send),
-                SizedBox(
-                  width: 8.0,
-                ),
-                Text('Detect my location'),
-              ],
-            ),
-            const Text('Suggestions'),
-            const SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                children: [
-                  LocationTile(title: 'Dehli'),
-                  LocationTile(title: 'Bengaluru'),
-                  LocationTile(title: 'Mumbai'),
-                  LocationTile(title: 'Hyderabad'),
-                  LocationTile(title: 'Chennai'),
-                  LocationTile(title: 'Kolkata'),
-                  LocationTile(title: 'Noida'),
-                ],
-              ),
-            ),
+            places.isEmpty
+                ? const ChooseSuggestions()
+                : Suggestions(
+                    places: places,
+                  ),
           ],
         ),
       ),
