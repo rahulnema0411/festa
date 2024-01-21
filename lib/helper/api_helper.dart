@@ -1,15 +1,18 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
-import 'package:http/http.dart' as http;
 
 class APIHelper {
-  static final dio = Dio();
-
   static Future<String?> fetchUrl(Uri uri,
       {Map<String, String>? headers}) async {
     try {
-      final response = await http.get(uri, headers: headers);
+      final dio = Dio();
+      final response =
+          await dio.get(uri.toString(), options: Options(headers: headers));
+
+      String encodedData = json.encode(response.data).toString();
       if (response.statusCode == 200) {
-        return response.body;
+        return encodedData;
       }
     } catch (e) {
       print(e.toString());
