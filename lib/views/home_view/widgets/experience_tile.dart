@@ -1,13 +1,14 @@
 import 'package:festa/constants/style_constants.dart';
 import 'package:flutter/material.dart';
 
+/// Represents a tile for displaying an experience, combining an image and a title.
 class ExperienceTile extends StatelessWidget {
   final String title;
 
   const ExperienceTile({
-    super.key,
+    Key? key,
     required this.title,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,6 +16,7 @@ class ExperienceTile extends StatelessWidget {
       padding: const EdgeInsets.all(8.0),
       child: Stack(
         children: [
+          // Background container with rounded corners and image
           ClipRRect(
             borderRadius: BorderRadius.circular(10.0),
             child: Container(
@@ -34,6 +36,7 @@ class ExperienceTile extends StatelessWidget {
               ),
             ),
           ),
+          // Positioned text at the bottom with the experience title
           Positioned(
             bottom: 8.0,
             left: 0.0,

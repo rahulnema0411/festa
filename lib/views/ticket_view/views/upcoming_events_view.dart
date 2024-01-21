@@ -3,8 +3,9 @@ import 'package:festa/constants/style_constants.dart';
 import 'package:festa/views/ticket_view/widgets/ticket.dart';
 import 'package:flutter/material.dart';
 
+/// A view displaying upcoming events with a single ticket and download/share buttons.
 class UpcomingEventsView extends StatelessWidget {
-  const UpcomingEventsView({super.key});
+  const UpcomingEventsView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +13,9 @@ class UpcomingEventsView extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
+          // Display a single ticket for the upcoming event.
           const Ticket(),
+          // Row containing download and share buttons.
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -53,7 +56,9 @@ class UpcomingEventsView extends StatelessWidget {
                     borderRadius: BorderRadius.circular(6),
                   ),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  // Add logic for handling share button press.
+                },
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Row(
@@ -72,9 +77,9 @@ class UpcomingEventsView extends StatelessWidget {
                     ],
                   ),
                 ),
-              )
+              ),
             ],
-          )
+          ),
         ],
       ),
     );

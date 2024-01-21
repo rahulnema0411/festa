@@ -2,13 +2,14 @@ import 'package:festa/constants/color_constants.dart';
 import 'package:festa/constants/style_constants.dart';
 import 'package:flutter/material.dart';
 
+/// Represents a tile for displaying a location with an icon and title.
 class LocationTile extends StatelessWidget {
   final String title;
 
   const LocationTile({
-    super.key,
+    Key? key,
     required this.title,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -30,10 +31,12 @@ class LocationTile extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            // Icon representing a location (e.g., grass icon)
             const Icon(Icons.grass_outlined),
             const SizedBox(
               height: 8.0,
             ),
+            // Text displaying the location title
             Text(
               title,
               style: StyleConstants.readTextWhiteSmall,

@@ -4,16 +4,10 @@ class PlaceSuggestions {
   PlaceSuggestions({required this.places});
 
   factory PlaceSuggestions.fromJson(Map<String, dynamic> json) {
-    List<dynamic>? predictions = json['predictions'];
-    if (predictions != null) {
-      List<Place> placesList = predictions.map((prediction) {
-        return Place.fromJson(prediction);
-      }).toList();
-
-      return PlaceSuggestions(places: placesList);
-    } else {
-      return PlaceSuggestions(places: []);
-    }
+    var predictions = json['predictions'] as List<dynamic>? ?? [];
+    List<Place> placesList =
+        predictions.map((prediction) => Place.fromJson(prediction)).toList();
+    return PlaceSuggestions(places: placesList);
   }
 }
 

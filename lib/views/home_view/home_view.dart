@@ -4,8 +4,9 @@ import 'package:festa/views/home_view/widgets/experience_tile.dart';
 import 'package:festa/views/home_view/widgets/select_location_popup.dart';
 import 'package:flutter/material.dart';
 
+/// The main view for the home screen.
 class HomeView extends StatelessWidget {
-  const HomeView({super.key});
+  const HomeView({Key? key});
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +36,7 @@ class HomeView extends StatelessWidget {
           IconButton(
             onPressed: () {},
             icon: const Icon(Icons.search),
-          )
+          ),
         ],
       ),
       body: Padding(
@@ -44,6 +45,7 @@ class HomeView extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              // Greeting text for the user.
               Text(
                 'Hey James, Let\'s party',
                 style: StyleConstants.readText,
@@ -51,6 +53,7 @@ class HomeView extends StatelessWidget {
               const SizedBox(
                 height: 16.0,
               ),
+              // Section for picking experiences.
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -84,6 +87,7 @@ class HomeView extends StatelessWidget {
     );
   }
 
+  // Show the location selection popup.
   void _showPopup(BuildContext context) {
     showDialog(
       context: context,

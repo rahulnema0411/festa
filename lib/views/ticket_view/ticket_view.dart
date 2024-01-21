@@ -4,8 +4,9 @@ import 'package:festa/views/ticket_view/views/history_events_view.dart';
 import 'package:festa/views/ticket_view/views/upcoming_events_view.dart';
 import 'package:flutter/material.dart';
 
+/// The main ticket view that displays upcoming and historical events.
 class TicketView extends StatefulWidget {
-  const TicketView({super.key});
+  const TicketView({Key? key}) : super(key: key);
 
   @override
   State<TicketView> createState() => _TicketViewState();
@@ -90,6 +91,7 @@ class _TicketViewState extends State<TicketView> {
     );
   }
 
+  /// Returns the appropriate view based on the selected [state].
   Widget getView() {
     switch (state) {
       case TicketViewState.history:
@@ -100,4 +102,5 @@ class _TicketViewState extends State<TicketView> {
   }
 }
 
+/// Enum representing the different states of the [TicketView].
 enum TicketViewState { history, upcoming }

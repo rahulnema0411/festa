@@ -8,10 +8,11 @@ import 'package:festa/views/home_view/widgets/choose_suggestions.dart';
 import 'package:festa/views/home_view/widgets/suggestions.dart';
 import 'package:flutter/material.dart';
 
+/// Widget for selecting a location through a popup dialog.
 class SelectLocationPopup extends StatefulWidget {
   const SelectLocationPopup({
-    super.key,
-  });
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<SelectLocationPopup> createState() => _SelectLocationPopupState();
@@ -20,12 +21,16 @@ class SelectLocationPopup extends StatefulWidget {
 class _SelectLocationPopupState extends State<SelectLocationPopup> {
   List<Place> places = [];
 
+  /// Function to perform place autocomplete based on the user's input query.
   void placeAutocomplete(String query) async {
-    Uri uri =
-        Uri.https('maps.googleapis.com', 'maps/api/place/autocomplete/json', {
-      "input": query,
-      "key": apiKey,
-    });
+    Uri uri = Uri.https(
+      'maps.googleapis.com',
+      'maps/api/place/autocomplete/json',
+      {
+        "input": query,
+        "key": apiKey,
+      },
+    );
 
     String? response = await APIHelper.fetchUrl(uri);
 
@@ -33,6 +38,7 @@ class _SelectLocationPopupState extends State<SelectLocationPopup> {
       PlaceSuggestions suggestions =
           PlaceSuggestions.fromJson(jsonDecode(response));
 
+      // Update the state with the retrieved place suggestions
       setState(() {
         places = suggestions.places;
       });
@@ -54,19 +60,24 @@ class _SelectLocationPopupState extends State<SelectLocationPopup> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            // Header row with the title and close button
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 const Text('Choose your location'),
                 IconButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    icon: const Icon(Icons.close))
+                  onPressed: () {
+                    // Close the location selection dialog
+                    Navigator.pop(context);
+                  },
+                  icon: const Icon(Icons.close),
+                )
               ],
             ),
+            // TextField for user input with autocomplete functionality
             TextField(
               onChanged: (value) {
+                // Trigger place autocomplete based on user input
                 placeAutocomplete(value);
               },
               decoration: InputDecoration(
@@ -79,6 +90,7 @@ class _SelectLocationPopupState extends State<SelectLocationPopup> {
                 ),
               ),
             ),
+            // Display either choose suggestions or actual suggestions based on user input
             places.isEmpty
                 ? const ChooseSuggestions()
                 : Suggestions(
