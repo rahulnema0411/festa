@@ -1,5 +1,7 @@
 #Festa - Assignment
 
+Screenshots for the app:
+
 https://drive.google.com/file/d/1vhE0AIiAvBuwDCwPyCCmq6GFrvY21PtZ/view?usp=sharing
 https://drive.google.com/file/d/16PKM9GZ5cCq3T9oEY7pwxuK0stX2i7o_/view?usp=sharing, 
 https://drive.google.com/file/d/1Q0ImkZoA73d2pRnUynHFGZmyxPiDyZYq/view?usp=sharing, 
